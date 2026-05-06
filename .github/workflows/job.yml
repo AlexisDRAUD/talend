@@ -1,25 +1,25 @@
 name: Talend Job CI
 
 on:
-	push:
-	branches: [ "main" ]
+  push:
+    branches: ["main"]
 
 jobs:
-	build-and-run:
-	runs-on: ubuntu-latest
+  build-and-run:
+    runs-on: ubuntu-latest
 
-steps:
-	- name: Checkout code
-	uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-	- name: Setup Java
-		uses: actions/setup-java@v4
-		with:
-		distribution: 'temurin'
-		java-version: '17'
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
-	- name: Build (if Maven)
-		run: mvn clean package
+      - name: Build (if Maven)
+        run: mvn clean package
 
-	- name: Run Talend Job
-		run: java -jar target/mon-job.jar
+      - name: Run Talend Job
+        run: java -jar target/mon-job.jar
